@@ -4,25 +4,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <title>Document</title>
 </head>
 
 <body>
-    <div id="app">
-        <header>
-            <h1>Task Manager</h1>
+    <div id="app" class="container mx-auto p-4">
+        <header class="mb-4">
+            <h1 class="text-3xl font-bold">Task Manager</h1>
         </header>
         <main>
-            <form id="task-form">
-                <input type="text" id="task-title" placeholder="Task Title" required>
-                <input type="text" id="task-category" placeholder="Category">
-                <input type="text" id="task-dueDate" required>
-                <button type="submit">Add Task</button>
+            <form id="task-form" class="mb-4">
+                <h2 class="text-2xl mb-2">Add New Task</h2>
+                <input type="text" id="task-title" placeholder="Task Title" required class="border p-2 mb-2 w-full">
+                <input type="text" id="task-category" placeholder="Category" class="border p-2 mb-2 w-full">
+                <input type="text" id="task-dueDate" placeholder="Due Date" required class="border p-2 mb-2 w-full">
+                <button type="submit" class="bg-blue-500 text-white p-2 rounded">Add Task</button>
             </form>
             <div id="task-list"></div>
         </main>
     </div>
-    <script src="scripts/app.js" type="module"></script>
+    <script src="index.js" type="module"></script>
 </body>
 
 </html>
