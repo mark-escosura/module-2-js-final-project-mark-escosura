@@ -18,9 +18,7 @@ class TaskManager {
   }
 
   completedTask(taskId) {
-    const task = this.tasks.find((task) => {
-      task.id === taskId;
-    });
+    const task = this.tasks.find((task) => task.id === taskId);
     if (task) {
       task.completed = true;
     } else {
@@ -29,9 +27,7 @@ class TaskManager {
   }
 
   removeTask(taskId) {
-    const task = this.tasks.filter((task) => {
-      task.id !== taskId;
-    });
+    this.tasks = this.tasks.filter((task) => task.id !== taskId);
   }
 
   getTask() {
@@ -42,13 +38,40 @@ class TaskManager {
     });
   }
 }
+const taskManager = new TaskManager(50);
 
-const taskManager = new TaskManager(10, [
-  { id: 1, task: 'Create addTask function', completed: false },
-  { id: 2, task: 'Create completedTask function', completed: false },
-]);
+//TODO: Implement localStorage to save task to users local browser.
 
-console.log('********TASK MANAGER********');
-console.log(taskManager.addTask('Task 3'));
-console.log(taskManager.completedTask(3));
-console.log(taskManager.getTask());
+// TODO: select the selectors for the form
+// input form task title
+// input form task category
+// input form task Due date
+// button for addTask
+// button for Reset
+
+// DOM selectors
+const taskTitle = document.getElementById('task-title');
+// Category should be a dropdown
+const taskCategory = document.getElementById('task-category');
+// taskDueDate should be a calendar
+const taskDueDate = document.getElementById('task-dueDate');
+const addTaskButton = document.getElementById('add-task');
+
+// AddItem
+addTaskButton.addEventListener('click', () => {
+  if (taskTitle.value.trim() === '') {
+    console.log('Task cannot be empty.');
+    return;
+  }
+
+  taskManager.addTask(taskTitle.value);
+  taskTitle.value = ''; // this will clear it after clicked.
+  console.log('Task added successfully.');
+});
+
+// Reset Form
+document.getElementById('reset-form').addEventListener('click', () => {
+  taskTitle.value = '';
+  taskCategory.value = 'Work'; // change this to a dropdown
+  taskDueDate.value = 'Tomorrow'; // change this to a calendar
+});
